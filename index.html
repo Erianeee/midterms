@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Valorant </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-lg">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">VALORANT <span class="text-danger">HUB</span></a>
+            
+            <ul class="nav nav-pills ms-auto me-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active rounded-pill text-uppercase" id="home-tab" data-bs-toggle="pill" data-bs-target="#view-home" type="button">Home</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill text-uppercase" id="agents-tab" data-bs-toggle="pill" data-bs-target="#view-agents" type="button">Agents</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill text-uppercase" id="weapons-tab" data-bs-toggle="pill" data-bs-target="#view-weapons" type="button">Weapons</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill text-uppercase" id="maps-tab" data-bs-toggle="pill" data-bs-target="#view-maps" type="button">Maps</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill text-uppercase" id="cards-tab" data-bs-toggle="pill" data-bs-target="#view-cards" type="button">Player Cards</button>
+                </li>
+            </ul>
+
+            <div class="w-25">
+                <input type="text" id="globalSearch" class="form-control bg-secondary text-white border-0 rounded-pill" placeholder="Search...">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="tab-content" id="pills-tabContent">
+            
+    <div class="tab-pane fade show active" id="view-home" role="tabpanel">
+
+        <div class="hero-banner" style="background: linear-gradient(135deg, #0f1923 0%, #1a2633 100%); min-height: 600px; position: relative; margin: -1.5rem -12px 0; display: flex; align-items: center; overflow: hidden;">
+                    <div class="hero-bg-image" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1538481143235-5d630028e4a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat; opacity: 0.3;"></div>
+                    <div class="container position-relative z-2">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <h1 class="display-2 fw-900 text-uppercase mb-3" style="letter-spacing: 3px; line-height: 1.1;">
+                                    <span style="color: var(--val-red);">PLANT</span><br>
+                                    THE SPIKE
+                                </h1>
+                                <p class="fs-5 text-white mb-4" style="max-width: 500px;">
+                                    Enter the Valorant universe with our comprehensive agent and card database. Master every ability, collect every card.
+                                </p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-danger text-uppercase fw-bold px-5 py-3" onclick="goToTab('agents-tab')">
+                                        Explore Agents
+                                    </button>
+                                    <button class="btn btn-outline-light text-uppercase fw-bold px-5 py-3" onclick="goToTab('maps-tab')">
+                                        View Maps
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 text-center">
+                                <div class="agent-showcase">
+                                    <img src="pics/spike.png" alt="Spike" style="width: 500px; height: auto; opacity: 0.8;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mt-5 mb-5">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="stat-showcase p-4" style="background: linear-gradient(135deg, rgba(255,70,85,0.1) 0%, rgba(255,70,85,0.05) 100%); border: 1px solid rgba(255,70,85,0.3); border-radius: 8px;">
+                                <h5 class="text-white text-uppercase small fw-bold mb-2">Total Agents</h5>
+                                <h2 id="agent-count" class="display-4 fw-bold text-danger mb-2">0</h2>
+                                <p class="text-white small mb-0">Playable characters ready for battle</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-showcase p-4" style="background: linear-gradient(135deg, rgba(0,242,254,0.1) 0%, rgba(0,242,254,0.05) 100%); border: 1px solid rgba(0,242,254,0.3); border-radius: 8px;">
+                                <h5 class="text-white text-uppercase small fw-bold mb-2">Maps</h5>
+                                <h2 id="maps-count" class="display-4 fw-bold" style="color: var(--val-cyan); margin-bottom: 0.5rem;">0</h2>
+                                <p class="text-white small mb-0">Total Maps</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-showcase p-4" style="background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">
+                                <h5 class="text-white text-uppercase small fw-bold mb-2">Total Content</h5>
+                                <h2 id="total-count" class="display-4 fw-bold text-white mb-2">0</h2>
+                                <p class="text-white small mb-0">Combined database collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mb-5">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h3 class="text-uppercase fw-bold" style="font-size: 2rem; letter-spacing: 2px;">Featured Agents</h3>
+                            <div class="line" style="width: 60px; height: 3px; background: var(--val-red);"></div>
+                        </div>
+                    </div>
+                    <div class="row g-3" id="featured-agents-container"></div>
+                </div>
+
+                <div class="container mb-5">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h3 class="text-uppercase fw-bold" style="font-size: 2rem; letter-spacing: 2px;">Learn the Game</h3>
+                            <div class="line" style="width: 60px; height: 3px; background: var(--val-red);"></div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;" src="https://www.youtube.com/embed/e_E9W2vsRbQ" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                            </div>
+                            <p class="text-white mt-3">Valorant - Official Trailer</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;" src="https://www.youtube.com/embed/IhhjcB2ZjIM" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                            </div>
+                            <p class="text-white mt-3">Valorant - Gameplay Guide</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mb-5">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h3 class="text-uppercase fw-bold" style="font-size: 2rem; letter-spacing: 2px;">Gallery</h3>
+                            <div class="line" style="width: 60px; height: 3px; background: var(--val-red);"></div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="gallery-item" style="height: 300px; background: url('pics/gallery1.png') center/cover; border-radius: 8px; overflow: hidden; position: relative;">
+                                <div class="overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="gallery-item" style="height: 300px; background: url('pics/gallery2.png') center/cover; border-radius: 8px; overflow: hidden; position: relative;">
+                                <div class="overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="gallery-item" style="height: 300px; background: url('pics/gallery3.png') center/cover; border-radius: 8px; overflow: hidden; position: relative;">
+                                <div class="overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.3);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-banner p-5 mb-5" style="background: linear-gradient(135deg, rgba(255,70,85,0.15) 0%, rgba(0,242,254,0.15) 100%); border: 2px solid rgba(255,70,85,0.3); border-radius: 12px; text-align: center;">
+                    <h2 class="text-uppercase fw-bold mb-3" style="font-size: 2rem;">Ready to Compete?</h2>
+                    <p class="text-white mb-4 fs-5">Browse agents, maps, weapons, and collect all player cards</p>
+                    <div class="d-flex gap-2 justify-content-center flex-wrap">
+                        <button class="btn btn-danger text-uppercase fw-bold px-5 py-3" onclick="goToTab('agents-tab')">
+                            All Agents
+                        </button>
+                        <button class="btn btn-outline-light text-uppercase fw-bold px-5 py-3" onclick="goToTab('maps-tab')">
+                            All Maps
+                        </button>
+                        <button class="btn btn-outline-light text-uppercase fw-bold px-5 py-3" onclick="goToTab('weapons-tab')">
+                            All Weapons
+                        </button>
+                        <button class="btn btn-outline-light text-uppercase fw-bold px-5 py-3" onclick="goToTab('cards-tab')">
+                            All Cards
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="view-agents" role="tabpanel">
+                <div class="agents-filter-bar mb-4 d-flex flex-wrap gap-2 align-items-center">
+                    <button class="btn btn-outline-light filter-btn active" data-role="All">All Agents</button>
+                    <button class="btn btn-outline-light filter-btn" data-role="Duelist">Duelist</button>
+                    <button class="btn btn-outline-light filter-btn" data-role="Initiator">Initiator</button>
+                    <button class="btn btn-outline-light filter-btn" data-role="Controller">Controller</button>
+                    <button class="btn btn-outline-light filter-btn" data-role="Sentinel">Sentinel</button>
+                </div>
+                <div class="row g-4" id="agent-container"></div>
+            </div>
+
+            <div class="tab-pane fade" id="view-weapons" role="tabpanel">
+                <h1 class="text-uppercase fw-bold mb-4">Arsenal</h1>
+                <div class="row g-4" id="weapon-container">
+                    </div>
+            </div>
+
+            <div class="tab-pane fade" id="view-maps" role="tabpanel">
+                <h1 class="text-uppercase fw-bold mb-4">Battlegrounds</h1>
+                <div class="row g-4" id="maps-container">
+                    </div>
+            </div>
+
+            <div class="tab-pane fade" id="view-cards" role="tabpanel">
+                <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3" id="cards-container">
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="agentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content agent-modal-content border-0 shadow-lg">
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <div class="col-md-5 modal-img-bg d-flex align-items-center justify-content-center" id="modal-bg">
+                            <img src="" id="modal-img" class="img-fluid p-4 agent-portrait-modal">
+                        </div>
+                        <div class="col-md-7 p-4 text-white bg-dark-card">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h1 id="modal-name" class="fw-bold mb-0 text-uppercase"></h1>
+                                    <p id="modal-role" class="text-cyan fw-bold mb-3"></p>
+                                </div>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <hr class="border-secondary">
+                            <h6 class="text-danger text-uppercase fw-bold small mt-2"> Description</h6>
+                            <p id="modal-desc" class="text-white small mb-4"></p>
+                            
+                            <h6 class="text-danger text-uppercase fw-bold small"> Special Abilities</h6>
+                            <div id="modal-abilities" class="row g-2 mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="weaponModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content agent-modal-content border-0 shadow-lg">
+                <div class="modal-body p-0">
+                    <div class="modal-header border-secondary p-4 pb-3" style="background-color: #171a1c;">
+                        <h5 class="text-uppercase fw-bold text-danger" id="weapon-modal-title"></h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body p-4" style="background-color: #171a1c;">
+                        <div class="row mb-4">
+                            <div class="col-md-4 text-center">
+                                <img src="" id="weapon-modal-img" class="img-fluid" style="max-height: 300px; object-fit: contain;">
+                            </div>
+                            <div class="col-md-8">
+                                <h6 class="text-danger text-uppercase fw-bold small mb-2">// Weapon Stats</h6>
+                                <div id="weapon-stats" class="mb-4"></div>
+                            </div>
+                        </div>
+                        <hr class="border-secondary">
+                        <h6 class="text-danger text-uppercase fw-bold small mb-3">// Available Skins</h6>
+                        <div class="row g-3" id="weapon-skins-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mapModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content agent-modal-content border-0 shadow-lg">
+                <div class="modal-body p-0" style="background-color: #171a1c;">
+                    <div class="position-relative">
+                        <img src="" id="map-modal-img" class="img-fluid w-100" style="max-height: 400px; object-fit: cover;">
+                        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="background: rgba(0,0,0,0.5); border-radius: 50%; padding: 10px;"></button>
+                    </div>
+                    <div class="p-4">
+                        <h2 id="map-modal-name" class="text-uppercase fw-bold text-danger mb-3"></h2>
+                        <hr class="border-secondary">
+                        <h6 class="text-danger text-uppercase fw-bold small mb-2">// Map Information</h6>
+                        <div id="map-info" class="row g-3 mb-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 text-center text-white border-top border-secondary mt-5">
+        <p>Project by <strong>Eriane Ladra</strong> | PUP Sto. Tomas Student Portfolio</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let allAgents = [];
+        let allCards = [];
+        let allWeapons = [];
+        let allMaps = [];
+
+        function goToTab(tabId) {
+            const button = document.getElementById(tabId);
+            button.click();
+        }
+
+        function updateDashboard() {
+            document.getElementById('agent-count').innerText = allAgents.length;
+            document.getElementById('maps-count').innerText = allMaps.length;
+            document.getElementById('total-count').innerText = allAgents.length + allCards.length + allWeapons.length + allMaps.length;
+            
+            displayFeaturedAgents();
+        }
+
+        function cleanEnumLabel(value) {
+            if (!value || typeof value !== 'string') return value || '';
+            const label = value.includes('::') ? value.split('::').pop() : value;
+            return label.replace(/([a-z])([A-Z])/g, '$1 $2').trim();
+        }
+
+        function displayFeaturedAgents() {
+            const container = document.getElementById('featured-agents-container');
+            container.innerHTML = '';
+            
+            // Show first 4 agents as featured
+            const featured = allAgents.slice(0, 4);
+            featured.forEach(agent => {
+                const card = document.createElement('div');
+                card.className = 'featured-agent-card';
+                card.onclick = () => showAgentDetails(agent.uuid);
+                card.innerHTML = `
+                    <img src="${agent.fullPortrait}" class="featured-agent-img" alt="${agent.displayName}">
+                    <div class="featured-agent-info">
+                        <h5 class="mb-0 text-uppercase fw-bold">${agent.displayName}</h5>
+                        <small class="text-white">${agent.role.displayName}</small>
+                    </div>
+                `;
+                container.appendChild(card);
+                
+            });
+        }
+        
+     
+
+        // Fetch Data from APIs
+        async function fetchData() {
+            try {
+                console.log('Starting to fetch data...');
+                const [agentRes, cardRes, weaponRes, mapRes] = await Promise.all([
+                    fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true'),
+                    fetch('https://valorant-api.com/v1/playercards'),
+                    fetch('https://valorant-api.com/v1/weapons'),
+                    fetch('https://valorant-api.com/v1/maps')
+                ]);
+                
+                console.log('All fetches completed');
+                const agentJson = await agentRes.json();
+                const cardJson = await cardRes.json();
+                const weaponJson = await weaponRes.json();
+                const mapJson = await mapRes.json();
+                
+                console.log('JSON parsed successfully');
+                allAgents = agentJson.data;
+                allCards = cardJson.data;
+                allWeapons = weaponJson.data.filter(w => !w.displayName.includes('Melee'));
+                allMaps = mapJson.data;
+
+                console.log('Data assigned to variables:', {allAgents: allAgents.length, allCards: allCards.length, allWeapons: allWeapons.length, allMaps: allMaps.length});
+                updateDashboard();
+                displayAgents(allAgents);
+                displayCards(allCards);
+                displayWeapons(allWeapons);
+                displayMaps(allMaps);
+                initAgentFilters();
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                alert("Failed to load data from APIs. Check console for details.");
+            }
+        }
+
+        function initAgentFilters() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const selectedRole = button.dataset.role;
+                    const filtered = selectedRole === 'All'
+                        ? allAgents
+                        : allAgents.filter(agent => agent.role && agent.role.displayName === selectedRole);
+                    displayAgents(filtered);
+                });
+            });
+        }
+
+        function displayAgents(agents) {
+            const container = document.getElementById('agent-container');
+            container.innerHTML = '';
+            agents.forEach(agent => {
+                const description = agent.description ? agent.description.slice(0, 85) + (agent.description.length > 85 ? '...' : '') : 'No description available.';
+                const card = document.createElement('div');
+                card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+                card.innerHTML = `
+                    <div class="agent-card h-100" onclick="showAgentDetails('${agent.uuid}')" style="cursor: pointer;">
+                        <div class="agent-img-container" style="background-image: url('${agent.background}')">
+                            <img src="${agent.fullPortrait}" class="agent-portrait">
+                            <div class="agent-name-overlay">
+                                <h2>${agent.displayName}</h2>
+                                <span class="role-tag"><img src="${agent.role.displayIcon}" width="12"> ${agent.role.displayName}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showAgentDetails(uuid) {
+            const agent = allAgents.find(a => a.uuid === uuid);
+            if(!agent) return;
+
+            document.getElementById('modal-name').innerText = agent.displayName;
+            document.getElementById('modal-role').innerText = agent.role.displayName;
+            document.getElementById('modal-desc').innerText = agent.description;
+            document.getElementById('modal-img').src = agent.fullPortrait;
+            document.getElementById('modal-bg').style.backgroundImage = `url('${agent.background}')`;
+
+            const abilitiesContainer = document.getElementById('modal-abilities');
+            abilitiesContainer.innerHTML = agent.abilities.map(ab => `
+                <div class="col-6">
+                    <div class="d-flex align-items-center p-2 bg-black bg-opacity-25 rounded h-100">
+                        <img src="${ab.displayIcon}" width="25" class="me-2">
+                        <span style="font-size: 0.75rem;">${ab.displayName}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const myModal = new bootstrap.Modal(document.getElementById('agentModal'));
+            myModal.show();
+        }
+
+        function displayCards(cards) {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+            cards.forEach(card => {
+                const col = document.createElement('div');
+                col.className = 'col';
+                col.innerHTML = `
+                    <div class="player-card-item">
+                        <div class="card-img-wrapper">
+                            <img src="${card.largeArt}" class="img-fluid rounded" alt="${card.displayName}" loading="lazy">
+                        </div>
+                        <p class="card-name text-truncate mt-1">${card.displayName}</p>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
+        function displayWeapons(weapons) {
+            const container = document.getElementById('weapon-container');
+            container.innerHTML = '';
+            weapons.forEach(weapon => {
+                const weaponName = weapon.displayName ? weapon.displayName.trim() : 'Unknown Weapon';
+                const card = document.createElement('div');
+                card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+                card.innerHTML = `
+                    <div class="weapon-card h-100" onclick="showWeaponDetails('${weapon.uuid}')" style="cursor: pointer; background-color: var(--val-card); border: 1px solid #333; border-radius: 8px; overflow: hidden; position: relative; transition: transform 0.3s ease, border-color 0.3s ease; padding: 20px; text-align: center;">
+                        <img src="${weapon.displayIcon}" class="img-fluid mb-3" style="max-height: 150px; object-fit: contain;">
+                        <h5 class="text-white text-uppercase fw-bold">${weaponName}</h5>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function getSkinPriceLabel(contentTierUuid) {
+            const tierPrices = {
+                '0cebb8be-46d7-c12a-d306-e9907bfc5a25': '1,775 Credits',
+                'e046854e-406c-37f4-6607-19a9ba8426fc': '2,975 Credits',
+                '60bca009-4182-7998-dee7-b8a2558dc369': '2,475 Credits',
+                '12683d76-48d7-84a3-4e09-6985794f0445': '2,175 Credits',
+                '411e4a55-4e59-7757-41f0-86a53f101bb5': '3,250 Credits'
+            };
+            return tierPrices[contentTierUuid] || 'Varies by skin tier';
+        }
+
+        function showWeaponDetails(uuid) {
+            const weapon = allWeapons.find(w => w.uuid === uuid);
+            if(!weapon) return;
+
+            document.getElementById('weapon-modal-title').innerText = weapon.displayName;
+            document.getElementById('weapon-modal-img').src = weapon.displayIcon;
+
+            // Display weapon stats
+            const statsContainer = document.getElementById('weapon-stats');
+            statsContainer.innerHTML = `
+                <div class="row g-2">
+                    <div class="col-6">
+                        <small class="text-white text-uppercase">Category</small>
+                        <p class="text-white fw-bold">${cleanEnumLabel(weapon.category || weapon.shopData?.category || 'Unknown')}</p>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-white text-uppercase">Cost</small>
+                        <p class="text-white fw-bold">${weapon.shopData ? weapon.shopData.cost : 'N/A'} Credits</p>
+                    </div>
+                </div>
+            `;
+
+            // Display skins
+            const skinsContainer = document.getElementById('weapon-skins-container');
+            skinsContainer.innerHTML = '';
+            
+            if(weapon.skins && weapon.skins.length > 0) {
+                weapon.skins.forEach(skin => {
+                    const skinCol = document.createElement('div');
+                    skinCol.className = 'col-md-4 col-lg-3';
+                    skinCol.innerHTML = `
+                        <div class="skin-item p-3 rounded" style="background-color: rgba(255, 70, 85, 0.05); border: 1px solid rgba(255, 70, 85, 0.2); transition: all 0.3s;">
+                            <img src="${skin.displayIcon || weapon.displayIcon}" class="img-fluid mb-2" style="max-height: 120px; object-fit: contain;">
+                            <h6 class="text-uppercase fw-bold text-white small mb-1">${skin.displayName || 'Default'}</h6>
+                            <p class="skin-price mb-0">${getSkinPriceLabel(skin.contentTierUuid)}</p>
+                        </div>
+                    `;
+                    skinsContainer.appendChild(skinCol);
+                });
+            } else {
+                skinsContainer.innerHTML = '<p class="text-white">No skins available</p>';
+            }
+
+            const myModal = new bootstrap.Modal(document.getElementById('weaponModal'));
+            myModal.show();
+        }
+
+        function displayMaps(maps) {
+            const container = document.getElementById('maps-container');
+            container.innerHTML = '';
+            maps.forEach(maps => {
+                const card = document.createElement('div');
+                card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+                card.innerHTML = `
+                    <div class="map-card h-100" onclick="showMapDetails('${maps.uuid}')" style="cursor: pointer; background-color: var(--val-card); border: 1px solid #333; border-radius: 8px; overflow: hidden; position: relative; transition: transform 0.3s ease, border-color 0.3s ease;">
+                        <div class="map-img-container" style="height: 200px; background: url('${maps.splash}') center/cover; position: relative; overflow: hidden;">
+                            <div class="map-overlay" style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));"></div>
+                            <h5 class="text-uppercase fw-bold text-white position-absolute bottom-0 start-0 end-0 p-3 m-0">${maps.displayName}</h5>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showMapDetails(uuid) {
+            const map = allMaps.find(m => m.uuid === uuid);
+            if(!map) return;
+
+            document.getElementById('map-modal-name').innerText = map.displayName;
+            document.getElementById('map-modal-img').src = map.splash;
+
+            // Display map info
+            const infoContainer = document.getElementById('map-info');
+            infoContainer.innerHTML = `
+                <div class="col-sm-6">
+                    <small class="text-white text-uppercase">Display Name</small>
+                    <p class="text-white fw-bold">${map.displayName}</p>
+                </div>
+                <div class="col-sm-6">
+                    <small class="text-white text-uppercase">Coordinates</small>
+                    <p class="text-white fw-bold">${map.coordinates || 'N/A'}</p>
+                </div>
+                <div class="col-sm-6">
+                    <small class="text-white text-uppercase">X Multiplier</small>
+                    <p class="text-white fw-bold">${map.xMultiplier || 'N/A'}</p>
+                </div>
+                <div class="col-sm-6">
+                    <small class="text-white text-uppercase">Y Multiplier</small>
+                    <p class="text-white fw-bold">${map.yMultiplier || 'N/A'}</p>
+                </div>
+            `;
+
+            const myModal = new bootstrap.Modal(document.getElementById('mapModal'));
+            myModal.show();
+        }
+
+        function handleSearch() {
+            const val = document.getElementById('globalSearch').value.toLowerCase();
+            const activeTab = document.querySelector('.nav-link.active').id;
+
+            if (activeTab === 'home-tab') {
+                return; // Search disabled on home page
+            } else if (activeTab === 'agents-tab') {
+                const filtered = allAgents.filter(a => a.displayName.toLowerCase().includes(val) || a.description.toLowerCase().includes(val));
+                displayAgents(filtered);
+            } else if (activeTab === 'weapons-tab') {
+                const filtered = allWeapons.filter(w => w.displayName.toLowerCase().includes(val));
+                displayWeapons(filtered);
+            } else if (activeTab === 'maps-tab') {
+                const filtered = allMaps.filter(m => m.displayName.toLowerCase().includes(val));
+                displayMaps(filtered);
+            } else {
+                const filtered = allCards.filter(c => c.displayName.toLowerCase().includes(val));
+                displayCards(filtered);
+            }
+        }
+
+        document.getElementById('globalSearch').addEventListener('input', handleSearch);
+
+        fetchData();
+    </script>
+</body>
+</html>
